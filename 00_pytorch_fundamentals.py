@@ -59,3 +59,38 @@ print(zero_tensor * random_tensor)
 
 ones_tensor = torch.ones(3, 3)
 print(ones_tensor * random_tensor)
+
+"""
+Creating a range of Tensors using torch.arange() -> https://pytorch.org/docs/stable/generated/torch.arange.html
+
+Also create zeros_like and ones_like tensors using torch.zeros_like() and torch.ones_like()
+
+Range() unlike regular python code does not work here since it is deprecated in PyTorch
+"""
+one_to_ten = torch.arange(1, 11)
+ten_zeros = torch.zeros_like(one_to_ten)
+print(one_to_ten, ten_zeros)
+
+"""
+Tensor datatypes is one of the 3 big errors you'll run into with PyTorch & Deep Learning:
+1. Tensor of not the right shape
+2. Tensor of not the right datatype
+3. Tensor on not the right device (CPU or GPU)
+
+Precision in computing -> wikipedia.org/wiki/Precision_(computer_science)
+"""
+
+# Changing the datatype of a tensor
+float_tensor = torch.tensor([1, 2, 3], dtype=None, device=None, requires_grad=False)
+print(float_tensor, float_tensor.dtype)
+
+float_16_tensor = float_tensor.type(torch.half)
+print(float_16_tensor, float_16_tensor.dtype)
+print(float_16_tensor * float_tensor)
+
+"""
+Getting information from Tensors:
+1. Tensors not right datatype - to get datatype from a tensor, can use tensor.dtype
+2. Tensors not right shape - to get shape of a tensor, can use tensor.shape
+3. Tensors not right device - to get device of a tensor, can use tensor.device
+"""
