@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 Introduction to Tensors:
 Creating Tensors
 
-They're created using torch.tensor() => https://pytorch.org/docs/stable/tensors.html
+They're created using torch.tensor() -> https://pytorch.org/docs/stable/tensors.html
 """
 
 scalar = torch.tensor(10)  # scalar is just a magnitude with no direction
@@ -89,8 +89,32 @@ print(float_16_tensor, float_16_tensor.dtype)
 print(float_16_tensor * float_tensor)
 
 """
-Getting information from Tensors:
+Getting information from Tensors (Tensor Attributes):
 1. Tensors not right datatype - to get datatype from a tensor, can use tensor.dtype
 2. Tensors not right shape - to get shape of a tensor, can use tensor.shape
 3. Tensors not right device - to get device of a tensor, can use tensor.device
+"""
+
+some_tensor = torch.rand(3, 4)
+print(
+    f"Datatype of tensor: {some_tensor.dtype}, Shape of tensor: {some_tensor.shape}, Device of tensor: {some_tensor.device}"
+)
+
+
+"""
+Tensor operations
+In deep learning, data (images, text, video, audio, protein structures, etc) gets represented as tensors.
+
+A model learns by investigating those tensors and performing a series of operations (could be 1,000,000s+) on tensors to create a representation of the patterns in the input data.
+
+These operations are often a wonderful dance between:
+
+Addition
+Substraction
+Multiplication (element-wise)
+Division
+Matrix multiplication
+And that's it. Sure there are a few more here and there but these are the basic building blocks of neural networks.
+
+Stacking these building blocks in the right way, you can create the most sophisticated of neural networks (just like lego!).
 """
