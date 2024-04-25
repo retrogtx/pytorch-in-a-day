@@ -118,3 +118,30 @@ And that's it. Sure there are a few more here and there but these are the basic 
 
 Stacking these building blocks in the right way, you can create the most sophisticated of neural networks (just like lego!).
 """
+
+"""
+Finding the min, max, mean, sum (tensor aggregation)
+
+torch.float32 requires the float32 datatype to be used for the tensor
+
+use var.argmin() or var.argmax() to find the index of the min or max value in a tensor
+"""
+
+x = torch.arange(0, 100, 10)
+print(torch.min(x), torch.max(x), torch.sum(x))
+
+print(torch.mean(x.type(torch.float32)))
+print(x.argmin(), x.argmax())
+
+"""
+Reshaping, Stacking, Squeezing, Unsqueezing Tensors
+
+Reshaping - Reshapes a tensor into a new shape
+View - Return a new tensor with the same data as the original tensor but with a different shape, same memory
+Stacking - Combines multiple tensors into a single tensor, on top of each other (v stack) or next to each other (h stack)
+Squeezing - Removes all single dimensions from a tensor
+Unsqueezing - Adds a dimension with a size of 1 to a tensor's shape
+Permute - Rearranges the dimensions of a tensor
+"""
+
+x = torch.arange(1.0, 10.0)
