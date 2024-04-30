@@ -145,3 +145,19 @@ Permute - Rearranges the dimensions of a tensor
 """
 
 x = torch.arange(1.0, 10.0)
+x_reshaped = x.reshape(1, 9)
+print(x_reshaped, x_reshaped.shape)
+
+# Change the view
+z = x.view(1, 9)
+
+# Stack tensors on top of each other
+x_stacked = torch.stack([x, x, x, x], dim=0) # try changing dim to dim=1 and see what happens
+print(x_stacked)
+
+# Squeeze and unsqueeze tensors
+x_squeezed = x_stacked.squeeze()
+print(x_squeezed)
+
+x_unsqueezed = x_squeezed.unsqueeze(dim=0)
+print(x_unsqueezed)
