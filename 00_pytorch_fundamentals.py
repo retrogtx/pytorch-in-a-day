@@ -161,3 +161,66 @@ print(x_squeezed)
 
 x_unsqueezed = x_squeezed.unsqueeze(dim=0)
 print(x_unsqueezed)
+
+"""
+ torch.permute() is a function used to permute the dimensions of a tensor. Permuting the dimensions means rearranging them in a desired order. 
+ This function returns a new tensor with the dimensions reordered according to the specified permutation.
+ """
+x_original = torch.rand(size=(224, 224, 3))  # height, width, colour channels
+x_permuted = x_original.permute(2, 0, 1)
+
+print(f"Previous shape: {x_original}")
+print(f"Permuted shape: {x_permuted}") # colour channels, height, width
+
+"""
+PyTorch tensors & NumPy
+
+Since NumPy is a popular Python numerical computing library, PyTorch has functionality to interact with it nicely.
+The two main methods you'll want to use for NumPy to PyTorch (and back again) are:
+
+torch.from_numpy(ndarray) - NumPy array -> PyTorch tensor.
+torch.Tensor.numpy() - PyTorch tensor -> NumPy array.
+"""
+
+# NumPy array to tensor
+array = np.arange(1.0, 8.0)
+tensor = torch.from_numpy(array)
+print(array, tensor) 
+
+# Tensor to NumPy array
+tensor = torch.ones(7) # create a tensor of ones with dtype=float32
+numpy_tensor = tensor.numpy() # will be dtype=float32 unless changed
+print(tensor, numpy_tensor) 
+
+"""
+Reproducibility:
+start with random numbers -> tensor operations -> try to make better (again and again and again)
+
+Although randomness is nice and powerful, sometimes you'd like there to be a little less randomness.
+
+Why?
+So you can perform repeatable experiments.
+"""
+
+random_tensor_A = torch.rand(3, 4)
+random_tensor_B = torch.rand(3, 4)
+
+print(f"Tensor A:\n{random_tensor_A}\n")
+print(f"Tensor B:\n{random_tensor_B}\n")
+print(f"Does Tensor A equal Tensor B? (anywhere)")
+print(random_tensor_A == random_tensor_B)
+
+# Set the random seed
+RANDOM_SEED=42 # try changing this to different values and see what happens to the numbers below
+torch.manual_seed(seed=RANDOM_SEED) 
+random_tensor_C = torch.rand(3, 4)
+
+# Have to reset the seed every time a new rand() is called 
+# Without this, tensor_D would be different to tensor_C 
+torch.random.manual_seed(seed=RANDOM_SEED) # try commenting this line out and seeing what happens
+random_tensor_D = torch.rand(3, 4)
+
+print(f"Tensor C:\n{random_tensor_C}\n")
+print(f"Tensor D:\n{random_tensor_D}\n")
+print(f"Does Tensor C equal Tensor D? (anywhere)")
+print(random_tensor_C == random_tensor_D)
